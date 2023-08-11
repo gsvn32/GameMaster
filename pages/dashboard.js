@@ -43,13 +43,19 @@ export async function getServerSideProps() {
 
 export default function DashBoard({user,tasks,deps}) {
   let taskItems = [];
+  if (tasks){
     for (var i = 0; i < tasks.length; i++) {
-        taskItems.push(<Task taskInfo={tasks[i]} />);
+        taskItems.push( <Task taskInfo={tasks[i]} />);
     }
-let depItems = [];
+  }
+  let depItems = [];
+  if(deps){
     for (var i = 0; i < deps.length; i++) {
         depItems.push(<Deps depsInfo={deps[i]}/>);
     }
+  }
+
+    
   const rewardBar = {
   height: "100%",
   width: (Number(user[0].treats_p)/Number(user[0].treats_bar))*100 + "%", // Replace "reward_bar" with the actual value for width

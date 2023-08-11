@@ -3,6 +3,7 @@ import styles from '../styles/Home.module.css';
 import {useState} from 'react';
 import {sayHello,getCurrentDate} from "../lib/commonTaskFun";
 export default function Deps({depsInfo}) {
+  if(depsInfo){
   const [taskStatus, settaskStatus] = useState(depsInfo.status); 
 
   // Event handler to update the task status selection
@@ -69,4 +70,5 @@ export default function Deps({depsInfo}) {
     </div>
 
   )
+}
 }

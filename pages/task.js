@@ -4,7 +4,8 @@ import {useState} from 'react';
 import {sayHello,getCurrentDate} from "../lib/commonTaskFun";
 
 export default function Task({taskInfo}) {
-  const [hoursWorked,sethoursWorked] = useState(taskInfo.p_hours)
+  if(taskInfo){
+    const [hoursWorked,sethoursWorked] = useState(taskInfo.p_hours)
   const [taskStatus, settaskStatus] = useState(taskInfo.status); 
 
   // Event handler to update the task status selection
@@ -15,6 +16,8 @@ export default function Task({taskInfo}) {
  const handlehoursWorked = (event)=> {
     sethoursWorked(event.target.value);
   };
+
+  
   
   return (
     <div className="main-div">
@@ -91,4 +94,5 @@ export default function Task({taskInfo}) {
     </div>
 
   )
+}
 }
