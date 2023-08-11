@@ -10,7 +10,8 @@ export async function getServerSideProps() {
   console.log("in server side")
     try {
         const client = await clientPromise;
-        const db = client.db("gamemaster");
+        if(client){
+          const db = client.db("gamemaster");
 
         const user = await db
             .collection("users")
@@ -34,6 +35,13 @@ export async function getServerSideProps() {
         return {
             props: { user: JSON.parse(JSON.stringify(user)), tasks:  JSON.parse(JSON.stringify(tasks)),deps:  JSON.parse(JSON.stringify(deps)),},
         };
+        }
+        else{
+          return{
+            console.log("Couldn't fetch data from db")
+          }
+        }
+        
     } catch (e) {
         console.error(e);
     }

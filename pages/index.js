@@ -12,7 +12,7 @@ export default function Home() {
       
       <main>
         <h1 className={styles.title}>
-          Welcome to <a href="http://localhost:3000">Game Master!</a>
+          Welcome to <a href="/">Game Master!</a>
         </h1>
 
         <p className={styles.description}>
@@ -20,13 +20,13 @@ export default function Home() {
         </p>
 
         <div className={styles.grid}> 
-          <a href="http://localhost:3000/dashboard" className={styles.card}>
+          <a href="/dashboard" className={styles.card}>
             <h3>DashBoard &rarr;</h3>
             <p>All Active Tasks are Organized here.</p>
           </a>
 
           <a
-            href="http://localhost:3000/managetask"
+            href="/managetask"
             className={styles.card}
           >
             <h3>Add/Manage &rarr;</h3>
