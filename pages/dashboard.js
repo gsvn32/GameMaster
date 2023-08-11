@@ -7,7 +7,7 @@ import Link from 'next/link';
 import clientPromise from "../lib/mongodb";
 
 export async function getServerSideProps() {
-  console.log("in server side")
+  console.log("in server side");
     try {
         const client = await clientPromise;
         if(client){
@@ -33,13 +33,13 @@ export async function getServerSideProps() {
             .toArray();
             console.log(deps)
         return {
-            props: { user: JSON.parse(JSON.stringify(user)), tasks:  JSON.parse(JSON.stringify(tasks)),deps:  JSON.parse(JSON.stringify(deps)),},
+            props: { msg:"Success",user: JSON.parse(JSON.stringify(user)), tasks:  JSON.parse(JSON.stringify(tasks)),deps:  JSON.parse(JSON.stringify(deps)),},
         };
         }
         else{
           return{
-            console.log("Couldn't fetch data from db")
-          }
+            props: {msg:"no data fetched"}
+          };
         }
         
     } catch (e) {
@@ -49,7 +49,8 @@ export async function getServerSideProps() {
 
 
 
-export default function DashBoard({user,tasks,deps}) {
+export default function DashBoard({msg,user,tasks,deps}) {
+  console.log(msg);
   let taskItems = [];
   if (tasks){
     for (var i = 0; i < tasks.length; i++) {
