@@ -28,7 +28,7 @@ jobs:
         npm install
 	npm npm run build
  
-     - name: deploy
+    - name: deploy
       run: |
 	npm run deploy
         npx webpack
