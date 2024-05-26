@@ -1,34 +1,35 @@
 # .github/workflows/deploy.yml
-name: 
+name: Deploy Next.js App
 
 on:
   push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [14.x, 16.x, 18.x]
-
     steps:
-    - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
 
-    - name: Build
-      run: |
-        npm install
-	npm npm run build
- 
-    - name: deploy
-      run: |
-	npm run deploy
-        npx webpack
+      - name: Install dependencies
+        run: npm install
+        # or
+        # run: yarn install
+
+      - name: Build project
+        run: npm run build
+        # or
+        # run: yarn build
+
+      - name: Deploy
+        run: npm run deploy
+        # Customize this part based on your deployment strategy
+        # For example, if deploying to Vercel, you might run:
+        # run: vercel --prod
